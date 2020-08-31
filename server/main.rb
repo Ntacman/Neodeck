@@ -1,9 +1,13 @@
 require 'sinatra'
+require "sinatra/cors"
 require 'json'
+
+set :allow_origin, "*"
 
 before do
   content_type :json
   headers 'Access-Control-Allow-Origin' => '*'
+  headers 'Access-Control-Allow-Headers' => '*'
 end
 
 $plugins = {}
@@ -15,7 +19,6 @@ Dir[File.dirname(__FILE__) + '/plugins/*.rb'].each do |file|
 end
 
 $plugins.each do |key, value|
-  puts "Key is: #{key}, value is: #{value}"
   value.test_action
 end
 
@@ -23,8 +26,9 @@ get '/get-action-providers' do
   providers = []
 
   $plugins.each do |key, value|
-    providers << {:provider_name => value.name}
+    providers << {'provider_name' => value.name}
   end
+  
 
   return providers.to_json
 end

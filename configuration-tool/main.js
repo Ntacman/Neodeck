@@ -24,6 +24,45 @@ function initialize_grid() {
   }
 }
 
+function pull_providers() {
+  $.ajax({
+    type: 'GET',
+    async: false,
+    headers: {
+      "accept": "application/json",
+      "Access-Control-Allow-Origin":"*"
+    },
+    crossDomain: true,
+    url: 'http://localhost:4567/get-action-providers',
+    dataType: 'json',
+    success: function (data) {
+      $.each(data, function(key,value) {
+        $('#configurebutton > .modal-dialog > .modal-content > .modal-body > #providers').append(new Option(value['provider_name'], value['provider_name']));
+      }); 
+    }
+  });
+}
+
+function pull_actions(provider='null') {
+  $.ajax({
+    type: 'GET',
+    async: false,
+    headers: {
+      "accept": "application/json",
+      "Access-Control-Allow-Origin":"*"
+    },
+    crossDomain: true,
+    url: 'http://localhost:4567/' + provider + '/actions',
+    dataType: 'json',
+    success: function (data) {
+      console.log(data);
+      $.each(data, function(key,value) {
+        $('#configurebutton > .modal-dialog > .modal-content > .modal-body > #actions').append(new Option(value['readable_name'], value['function_name']));
+      });
+    }
+  });
+}
+
 $(document).ready(function() {
   initialize_grid();
   $("#rows").change(function() {
@@ -37,37 +76,15 @@ $(document).ready(function() {
   });
 
   $('.button').click(function() {
+    $('#actions').find('option').remove().end();
+    $('#providers').find('option').remove().end();
+    pull_providers();
+    pull_actions($('#providers').find('option:selected').text());
     $('#configurebutton').modal();
-    $.ajax({
-      type: 'GET',
-      headers: {
-        "accept": "application/json",
-        "Access-Control-Allow-Origin":"*"
-      },
-      crossDomain: true,
-      url: 'http://localhost:4567/get-action-providers',
-      dataType: 'json',
-      success: function (data) {
-        console.log(data);
-        $('#configurebutton > .modal-dialog > .modal-content > .modal-body > #services').append(new Option(data['name'], data['name']));
-      }
-    });
   });
 
-  $('#actions').change(function() {
-    $.ajax({
-      type: 'GET',
-      headers: {
-        "accept": "application/json",
-        "Access-Control-Allow-Origin":"*"
-      },
-      crossDomain: true,
-      url: 'http://localhost:8000/get-action-categories',
-      dataType: 'json',
-      success: function (data) {
-        console.log(data);
-        $('#configurebutton > .modal-dialog > .modal-content > .modal-body > #services').append(new Option(data['name'], data['name']));
-      }
-    });
+  $('#providers').change(function() {
+    $('#actions').find('option').remove().end();
+    pull_actions($('#providers').find('option:selected').text());
   });
 });
