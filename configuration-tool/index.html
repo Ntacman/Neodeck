@@ -1,0 +1,40 @@
+<head>
+<link href='style.css' rel='stylesheet'>
+<link href='bootstrap-4.5.2-dist/css/bootstrap.css' rel='stylesheet'>
+<script src='jquery.js'></script>
+<script src='main.js'></script>
+<script src='./bootstrap-4.5.2-dist/js/bootstrap.js'></script>
+</head>
+<body>
+<div class='controls'>
+<label for='columns'>Columns:</label>
+<input id='columns' name='columns' type='text' value='4'>
+<br>
+<br>
+<label for='rows'>Rows:</label>
+<input id='rows' name='rows' type='text' value='2'>
+<br>
+<br>
+</div>
+<div class='htmlgrid'></div>
+<!-- Modal -->
+<div class='modal fade' id='configurebutton' role='dialog'>
+<div class='modal-dialog'>
+<div class='modal-content'>
+<div class='modal-header'>
+<h4 class='modal-title text-center'>Edit Button</h4>
+</div>
+<div class='modal-body'>
+<label for='services'>Service:</label>
+<select id='services' name='services'></select>
+<br>
+<label for='actions'>Actions:</label>
+<select id='actions' name='actions'></select>
+</div>
+<div class='modal-footer'>
+<button class='btn btn-default' data-dismiss='modal' type='button'>Close</button>
+</div>
+</div>
+</div>
+</div>
+</body>

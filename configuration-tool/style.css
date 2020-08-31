@@ -1,0 +1,28 @@
+.htmlgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 3px;
+  max-width: 95%;
+  max-height: 95%;
+}
+
+body {
+  background-color: black !important;
+}
+
+.button {
+  width: 25ch;
+  height: 25ch;
+  border: 3px solid red;
+  background-color: white;
+}
+
+.controls {
+  background-color:gray;
+  max-height: 2%;
+}
+
+html {
+  background-color: black;
+}
