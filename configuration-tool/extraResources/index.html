@@ -1,20 +1,16 @@
 <head>
-<link href='style.css' rel='stylesheet'>
-<link href='bootstrap-4.5.2-dist/css/bootstrap.css' rel='stylesheet'>
-<script src='jquery.js'></script>
-<script src='main.js'></script>
-<script src='./bootstrap-4.5.2-dist/js/bootstrap.js'></script>
+<link href='../extraResources/style.css' rel='stylesheet'>
+<link href='../extraResources/bootstrap-4.5.2-dist/css/bootstrap.css' rel='stylesheet'>
+<script>window.$ = window.jQuery = require('../extraResources/jquery.js');</script>
+<script src='../extraResources/main_non_electron.js'></script>
+<script src='../extraResources/bootstrap-4.5.2-dist/js/bootstrap.js'></script>
 </head>
 <body>
 <div class='controls'>
 <label for='columns'>Columns:</label>
 <input id='columns' name='columns' type='text' value='4'>
-<br>
-<br>
 <label for='rows'>Rows:</label>
 <input id='rows' name='rows' type='text' value='2'>
-<br>
-<br>
 </div>
 <div class='htmlgrid'></div>
 <!-- Modal -->
@@ -25,11 +21,18 @@
 <h4 class='modal-title text-center'>Edit Button</h4>
 </div>
 <div class='modal-body'>
+<input id='buttonId' type='hidden'>
+<label for='buttontext'>Button Text:</label>
+<input id='buttontext' name='buttontext'>
+<br>
 <label for='providers'>Provider:</label>
 <select id='providers' name='providers'></select>
 <br>
 <label for='actions'>Actions:</label>
 <select id='actions' name='actions'></select>
+<br class='tracks'>
+<label class='track' for='track'>Track:</label>
+<select class='track' id='track' name='track'></select>
 </div>
 <div class='modal-footer'>
 <button class='btn btn-default' data-dismiss='modal' type='button'>Close</button>

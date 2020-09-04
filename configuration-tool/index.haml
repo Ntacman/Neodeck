@@ -1,19 +1,16 @@
 %head
-  %link{:href => "style.css", :rel => "stylesheet"}/
-  %link{:href => "bootstrap-4.5.2-dist/css/bootstrap.css", :rel => "stylesheet"}/
-  %script{:src => "jquery.js"}
-  %script{:src => "main.js"}
-  %script{:src => "./bootstrap-4.5.2-dist/js/bootstrap.js"}
+  %link{:href => "../extraResources/style.css", :rel => "stylesheet"}
+  %link{:href => "../extraResources/bootstrap-4.5.2-dist/css/bootstrap.css", :rel => "stylesheet"}
+  :javascript
+    window.$ = window.jQuery = require('../extraResources/jquery.js');
+  %script{:src => "../extraResources/main_non_electron.js"}
+  %script{:src => "../extraResources/bootstrap-4.5.2-dist/js/bootstrap.js"}
 %body
   .controls
     %label{:for => "columns"} Columns:
-    %input#columns{:name => "columns", :type => "text", :value => "4"}/
-    %br/
-    %br/
+    %input#columns{:name => "columns", :type => "text", :value => "4"}
     %label{:for => "rows"} Rows:
-    %input#rows{:name => "rows", :type => "text", :value => "2"}/
-    %br/
-    %br/
+    %input#rows{:name => "rows", :type => "text", :value => "2"}
   .htmlgrid
   / Modal
   #configurebutton.modal.fade{:role => "dialog"}
@@ -22,10 +19,17 @@
         .modal-header
           %h4.modal-title.text-center Edit Button
         .modal-body
+          %input#buttonId{:type => "hidden"}/
+          %label{:for => "buttontext"} Button Text:
+          %input#buttontext{:name => "buttontext"}/
+          %br
           %label{:for => "providers"} Provider:
           %select#providers{:name => "providers"}
           %br
           %label{:for => "actions"} Actions:
           %select#actions{:name => "actions"}
+          %br.tracks
+          %label.track{:for => "track"} Track:
+          %select#track.track{:name => "track"}
         .modal-footer
           %button.btn.btn-default{"data-dismiss" => "modal", :type => "button"} Close

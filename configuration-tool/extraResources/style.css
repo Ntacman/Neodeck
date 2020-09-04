@@ -3,12 +3,14 @@
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-gap: 3px;
-  max-width: 95%;
-  max-height: 95%;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 body {
   background-color: black !important;
+  max-height: 100%;
+  max-width: 100%;
 }
 
 .button {
@@ -20,9 +22,16 @@ body {
 
 .controls {
   background-color:gray;
-  max-height: 2%;
+  max-height: 15%;
+  max-width: 100%;
 }
 
 html {
   background-color: black;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
